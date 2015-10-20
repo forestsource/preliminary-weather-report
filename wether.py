@@ -12,11 +12,7 @@ from requests_oauthlib import OAuth1Session
 from bs4 import BeautifulSoup
 from bs4 import UnicodeDammit
 
-weatherurl = "http://weather.yahoo.co.jp/weather/jp/14/4610/14135.html"
-rainurl = "http://weather.olp.yahooapis.jp/v1/place?coordinates=139.562069,35.61956&output=json&appid=dj0zaiZpPVpmZ1pLSWl0dm1mTSZzPWNvbnN1bWVyc2VjcmV0Jng9YzA-"
-jsonfile = "/Users/HMT/Desktop/json"
-dbfile = "/Users/HMT/sqlite3/wether_db"
-# 5分に一回程度 24h リセット
+
 ''' 
 	Table 1
     CREATE TABLE Area (idx INTEGER auto_increment PRIMARY KEY,
@@ -217,14 +213,19 @@ class Web:
 
 
 if __name__ == "__main__":
-	rainurl = "http://weather.olp.yahooapis.jp/v1/place?coordinates=139.562069,35.61956&output=json&appid=dj0zaiZpPVpmZ1pLSWl0dm1mTSZzPWNvbnN1bWVyc2VjcmV0Jng9YzA-"
+	#######values#####
 	weatherurl = "http://weather.yahoo.co.jp/weather/jp/14/4610/14135.html"
-	jsonfile = "/Users/HMT/Desktop/json"
-	dbfile = "/Users/HMT/sqlite3/wether_db"
+	jsonfile = "./json"
+	dbfile = "./wether_db"
+	
+	r = open(apikey,"r")
+	rainurl = r
+	r.close()
 
 	r = open(jsonfile,"r")
 	jsonData = json.load(r)
 	r.close()
+	##################
 
 	web = Web()
 	db = DB()
